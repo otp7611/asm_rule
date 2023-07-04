@@ -4,6 +4,7 @@ def _cxx_compile(ctx, src):
     args = ctx.actions.args()
     args.add("-f")
     args.add("elf64")
+    args.add_all(ctx.attr.copts)
     args.add("-o", out)
     args.add(src)
 
@@ -47,6 +48,9 @@ asm_library = rule(
         "srcs": attr.label_list(
             allow_files = [".asm"],
             doc = "Source files to compile for this library",
+        ),
+        "copts": attr.string_list(
+            doc = "Compile flags for this library",
         ),
     },
     doc = "Builds a library from asm source code",
