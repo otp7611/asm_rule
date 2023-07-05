@@ -16,4 +16,5 @@ cc_binary(
     deps = [
         ":src",
     ],
+    linkopts = ["-no-pie"],
 )
